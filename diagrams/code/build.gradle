@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+        'org.junit.jupiter:junit-jupiter-api:5.1.0',
+        'org.hamcrest:hamcrest-all:1.3'
+    )
+    testRuntimeOnly(
+        'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/java')
+        testSourceDirs += file('src/test/java')
+        inheritOutputDirs = false
+        outputDir = file('build/classes/java/main')
+        testOutputDir = file('build/classes/java/test')
+    }
+}
